@@ -1,0 +1,38 @@
+# Git Ignore Template for Flask Project in a venv
+
+# Python virtual environment
+venv/
+
+# Compiled Python files
+*.pyc
+
+# Logs
+*.log
+
+# Environment variables
+.env
+
+# Dependencies
+# If using pipenv for dependency management
+Pipfile
+Pipfile.lock
+
+# If using poetry for dependency management
+pyproject.toml
+poetry.lock
+
+# IDE-specific files and directories
+.vscode/
+.idea/
+
+# Compiled files and build artifacts
+__pycache__/
+dist/
+build/
+*.egg-info/
+
+# Local development server
+.env.local
+
+# Miscellaneous
+.DS_Store
