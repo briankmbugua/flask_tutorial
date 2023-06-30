@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hello Flask!</title>
+</head>
+
+<body>
+    <h1>Hello Flask!</h1>
+    <form method="POST" action="/">
+        {{ form.csrf_token }}
+        {{ form.name.label}} {{ form.name}}
+        {{ form.submit }}
+    </form>
+    {% if name %}
+    <h2>Hi, {{ name }}!</h2>
+    {% endif %}
+</body>
+
+</html>
