@@ -29,3 +29,6 @@ class NameForm(FlaskForm):
 """The fields in the form are defined as class variables, and each class variable is assinged an object associated with the field type.
 The NameForm form has a text field called name and a submit button called submit.The StringField class represents an <input> element with a type="text" attribute.The SubmitField class represents an <input> element with a type = "submit" attribute.The first argument to field constructors is the label that will be used when rendering the form to HTML
 validators argument included in the StringField constructor defines a list of checkers that will be applied to the dat submitted by the user before it is accepted.Required() validator ensures that the field is not submitted empty. """
+
+# HTML Rendering of Forms
+"""Form fields are callables that, when invoked from a template render themselves to HTML."""
