@@ -12,9 +12,7 @@
         {{ form.name.label}} {{ form.name}}
         {{ form.submit }}
     </form>
-    {% if name %}
-    <h2>Hi, {{ name }}!</h2>
-    {% endif %}
+    <h2>Hi,{% if name %}{{ name }} {% else %}! Stranger {% endif%}</h2>
 </body>
 
 </html>
