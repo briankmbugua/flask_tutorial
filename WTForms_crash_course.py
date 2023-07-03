@@ -11,6 +11,7 @@ Every field has a Widget instance.The widget's job is rendering an HTML represen
 
 
 
+from wtforms.validators import ValidationError
 from wtforms import Form, BooleanField, StringField, DateTimeField, TextAreaField, IntegerField, PasswordField, validators
 class RegistrationForm(Form):
     username = StringField('Username', [validators.Length(min=4, max=5)])
@@ -60,3 +61,47 @@ print(str(form.username)
 class LoginForm(Form):
     username = StringField('Username')
     password = PasswordField('Password')
+
+# And the template
+
+# <form method = "POST" action="/login">
+#       <div> {{ form.username.label}} : {{ form.username(class="css_class")}}</div>
+# <div>{{ form.password.label}} : {{form.password() }}</div>
+# </form>
+
+# The Above will output
+
+# <form>
+#     <div>
+#           <label for="username">Username</label>
+#           <input class="css_class" id = "username" name="username" type="text" value="" />
+#     </div>
+#     <div>
+#            <label for="password">Password</label>
+#            <input id="passoword" name="password" type="password" value=""/>
+#     </div>
+# </form>
+
+# WTForms is template engine agnostic.
+
+# Custom validators
+# Defining a custom validator and using it on a field
+
+
+def is_42(form, field):
+    if field.data != 42:
+        raise ValidationError('Must be 42')
+
+
+class FourtyTwoForm(Form):
+    num = IntegerField('Number', [is_42])
+
+# providing an in-form field-specific validator:
+
+
+class FourtyTwoForm(Form):
+    num = IntegerField('Number')
+
+    def validate_num(form, field):
+        if field.data != 42:
+            raise ValidationError('Must be 42')
