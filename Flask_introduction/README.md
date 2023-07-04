@@ -1,0 +1,1 @@
+This folder contains all the introductory content i have covered. And all the templates i have used
