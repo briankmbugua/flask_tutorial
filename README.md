@@ -1,9 +1,3 @@
-# flask
 
-## creating a virtual enviroment
-
-python3 -m venv venv
-
-# Activate virtual enviroment
-
-source venv/bin/activate
+# FLASK
+learning flask using developing web applications with python book and several other sources
