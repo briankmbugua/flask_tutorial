@@ -27,8 +27,25 @@ class Student(db.Model):
     bio = db.Column(db.Text)
 
     def __repr__(self):
-        return f'<Student {self.firstname}'
+        return f'<Student {self.firstname}>'
+
+# After initialiazing the database using flask shell and adding some data to it
+# Create route and template to display all the students in the database on the index page
 
 
-# Creating the database
-# Use the Flask shell to create your database and your student table based on the Student model.Also set the app.py file as your Flask application using the FLASK_APP enviromental variable.
+# create an index view function which renders a template while passing the student object from the query to render template to be used in populating the frontend
+@app.route('/')
+def index():
+    students = Student.query.all()
+    return render_template('index.html', students=students)
+
+
+# Displaying a single record
+# Route that renders a page for each individual student.Use get_or_404() method Flask-SQLAlchemy provides, which is a variant of the get() method.The difference is that get() returns the value None when no result matches the given ID, and get_or_404() returns a 404 Not Found HTTP response
+
+
+# '<int:student_id>/' here int is a convertor that convers the default string in the URL into an integer.And student_id is the URL variable that determines the student being displayed on the page.
+@app.route('/<int:student_id>/')
+def student(student_id):
+    student = Student.query.get_or_404(student_id)
+    return render_template('student.html', student=student)
