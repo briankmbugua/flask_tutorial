@@ -49,3 +49,10 @@ def index():
 def student(student_id):
     student = Student.query.get_or_404(student_id)
     return render_template('student.html', student=student)
+
+
+# Creating a new record using a route for adding new students to the database using web forms.Render a page with a web form where users enter the students data.Then handle form submission, create an object for the new student using the Student model, add it to the session, then commit the transaction
+
+@app.route('/create/', methods=('GET', 'POST'))
+def create():
+    return render_template('create.html')
