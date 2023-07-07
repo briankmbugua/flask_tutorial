@@ -55,4 +55,60 @@ def student(student_id):
 
 @app.route('/create/', methods=('GET', 'POST'))
 def create():
+    # handle post from the form in create.html
+    if request.method == 'POST':
+        firstname = request.form['firstname']
+        lastname = request.form['lastname']
+        email = request.form['email']
+        age = int(request.form['age'])
+        bio = request.form['bio']
+        student = Student(firstname=firstname,
+                          lastname=lastname,
+                          email=email,
+                          age=age,
+                          bio=bio)
+        db.session.add(student)
+        db.session.commit()
+        return redirect(url_for('index'))
     return render_template('create.html')
+
+
+# route for editing a record, an /ID/edit/ route to edit the data of the students based on their ID.It fetches the student entry you want to edit using its ID.It extracts the new student via a web form.it then edits the student data, and redirects the user to the index page.
+
+@app.route('/<int:student_id>/edit/', methods=('GET', 'POST'))
+def edit(student_id):
+    student = Student.query.get_or_404(student_id)
+
+    if request.method == 'POST':
+        firstname = request.form['firstname']
+        lastname = request.form['lastname']
+        email = request.form['email']
+        age = int(request.form['age'])
+        bio = request.form['bio']
+
+        student.firstname = firstname
+        student.lastname = lastname
+        student.email = email
+        student.age = age
+        student.bio = bio
+
+        db.session.add(student)
+        db.session.commit()
+
+        return redirect(url_for('index'))
+    return render_template('edit.html', student=student)\
+
+
+
+# Deleting a Record
+# in this step i will add a new route and Delete button for deleting existing students.First i will add a new /id/delete/ route that accepts POST requests.The new delete() view function will receive the ID of the student you want to delete, pass the ID to the get_or_404() query method on the Student model to get it if it exists, or 404 Not found page if no student with the given ID was found on the database.
+
+@app.post('/<int:student_id>/delete/')
+def delete(student_id):
+    student = Student.query.get_or_404(student_id)
+    db.session.delete(student)
+    db.session.commit()
+    return redirect(url_for('index'))
+
+
+"""Here instead of using the usual app.route decorator, you use the app.post decorator introduced in Flask version 2.0.0, which added shortcuts for common HTTP methods.For example, @app.post("/login") is a shortcut for @app.route("/login", methods=["POST"])"""
