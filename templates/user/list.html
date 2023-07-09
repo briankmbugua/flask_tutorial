@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask App</title>
+    <style>
+        .user-box {
+            border: 2px solid black;
+            margin: 20px;
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+
+<body>
+    {% for user in users %}
+    <div class="user-box">
+        <p>USER ID:{{user.id}}</p>
+        <p>USERNAME:{{user.username}}</p>
+        <p>USER-EMAIL:{{user.email}}</p>
+    </div>
+    {% endfor %}
+</body>
+
+</html>
