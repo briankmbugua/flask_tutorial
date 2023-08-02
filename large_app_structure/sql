@@ -1,0 +1,2 @@
+USE one_to_many_relationship;
+SHOW TABLES;
