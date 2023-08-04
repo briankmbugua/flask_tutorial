@@ -1,4 +1,15 @@
-# Git Ignore Template for Flask Project in a venv
+# Git Ignore Template for Flask Project in a venv and react frontend
+# Node.js dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+# Compiled files
+*.min.css
+*.min.js
+
+# Build artifacts
+/build
+/dist
 
 # Python virtual environment
 venv/
